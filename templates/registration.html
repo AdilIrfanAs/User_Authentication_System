@@ -1,0 +1,53 @@
+{% extends "login.html" %}
+{% block header %} Registration {% endblock %}
+{% block content %}
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-field d-flex align-items-center">
+            {{ form.first_name }}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            {{ form.last_name }}
+        </div>
+        <div class="form-field d-flex align-items-center">
+            {{ form.username }}
+        </div>
+        {% if form.username.errors %}
+            <div class="d-flex align-items-center">
+                <div class="alert alert-danger small">
+                    <strong>{{ form.username.errors|escape }}</strong>
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-field d-flex align-items-center">
+            {{ form.email }}
+        </div>
+        {% if form.email.errors %}
+            <div class="d-flex align-items-center">
+                <div class="alert alert-danger small">
+                    <strong>{{ form.email.errors|escape }}</strong>
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-field d-flex align-items-center">
+            {{ form.password1 }}
+        </div>
+        {% if form.password1.errors %}
+            <div class="d-flex align-items-center">
+                {{ form.password1.errors }}
+            </div>
+        {% endif %}
+        <div class="form-field d-flex align-items-center">
+            {{ form.password2 }}
+        </div>
+        {% if form.password2.errors %}
+            <div class="alert alert-danger small">
+                <strong>{{ form.password2.errors|escape }}</strong>
+            </div>
+        {% endif %}
+        <button type="submit" class="btn mt-3">Registration</button>
+        <div class="text-center fs-6 mt-4"><a href="{% url 'login-view' %}">Sign in?</a> or <a
+                href="{% url 'password-rest' %}">Forget Password?</a></div>
+    </form>
+
+{% endblock %}
